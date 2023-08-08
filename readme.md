@@ -256,12 +256,10 @@ The most common loss function used in logistic regression is the **logarithmic l
 **Log Loss (Cross-Entropy Loss):**
 The log loss quantifies the difference between the predicted probabilities (obtained from the logistic regression model) and the actual binary outcomes. It's defined mathematically as:
 
-\[ \text{Log Loss} = -\frac{1}{N}\sum_{i=1}^{N} \left( y_i \log(p_i) + (1 - y_i) \log(1 - p_i) \right) \]
+![image](.pictures/2.png)
 
 Where:
-- \( N \) is the number of samples in the dataset.
-- \( y_i \) is the true binary outcome (0 or 1) for the \( i \)th sample.
-- \( p_i \) is the predicted probability of the \( i \)th sample belonging to class 1.
+![image](.pictures/1.png)
 
 The log loss has several important properties that make it suitable for logistic regression:
 - It penalizes larger errors more heavily, as the logarithmic term amplifies the difference between predicted and actual values.
