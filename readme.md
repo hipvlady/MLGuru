@@ -1,4 +1,4 @@
-# Machine Learning and Data Science Interview question
+# Data Science Interview question
 
 
 1. [Can you describe what logistic regression is, and where you might apply it?](#can-you-describe-what-logistic-regression-is-and-where-you-might-apply-it)
