@@ -1,6 +1,5 @@
 # Data Science interview question
 
-
 1. [Can you describe what logistic regression is, and where you might apply it?](#can-you-describe-what-logistic-regression-is-and-where-you-might-apply-it)
 2. [Explain how you would handle multicollinearity in a regression analysis.](#explain-how-you-would-handle-multicollinearity-in-a-regression-analysis)
 3. [How would you approach residual analysis in a logistic regression model?](#how-would-you-approach-residual-analysis-in-a-logistic-regression-model)
