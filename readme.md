@@ -2,7 +2,7 @@
 
 ## Data science interview questions
 ***
-* Theoretical questions: [data_science_questions.md]() (linear models, trees, neural networks and others)
+* Theoretical questions: [data_science_questions.md](https://github.com/hipvlady/machine-learning-interview/blob/main/data_science_questions.md) (linear models, trees, neural networks and others)
 
 ### License
 ***
