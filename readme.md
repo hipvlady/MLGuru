@@ -1,6 +1,6 @@
 ![image](.pictures/dwight.jpg)
 ## Overview
-Welcome to the MLGuru content guide. I appreciate assistance from the consortium and community members for content 
+Welcome to the **ML Guru** content guide. I appreciate assistance from the consortium and community members for content 
 creation and upkeep.
 
 ## Getting Help
