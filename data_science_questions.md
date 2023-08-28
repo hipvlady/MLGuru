@@ -3,7 +3,7 @@
 ## Statistical Foundations and Assumptions
 This category emphasizes the theoretical underpinnings of statistical methods and models, which would be apt for 
 questions about the assumptions of linear regression and similar statistical methods.
-1. [What are the main assumptions of linear regression?](#what-are-the-main-assumptions-of-linear-regression?) 
+1. [What are the main assumptions of linear regression](#what-are-the-main-assumptions-of-linear-regression) 
 
 ## Foundational Concepts and Techniques
 1. [Can you describe what logistic regression is, and where you might apply it?](#can-you-describe-what-logistic-regression-is-and-where-you-might-apply-it)
@@ -20,7 +20,8 @@ questions about the assumptions of linear regression and similar statistical met
 12. [How do you approach time-series analysis?](#how-do-you-approach-time-series-analysis)
 13. [How would you explain the ROC curve to a non-technical stakeholder?](#how-would-you-explain-the-ROC-curve-to-a-non-technical-stakeholder)
 14. [Explain the significance of evaluation metrics like precision, recall, and F1 score](#explain-the-significance-of-evaluation-metrics-like-precision,-recall,-and-F1-score)
-15. [How do we check if a variable follows the normal distribution?](#how-do-we-check-if-a-variable-follows-the-normal-distribution?)
+15. [How do we check if a variable follows the normal distribution?](#how-do-we-check-if-a-variable-follows-the-normal-distribution)
+16. [What is gradient descent? How does it work?](#what-is-gradient-descent?-How-does-it-work)
 
 ## Modeling Challenges and Solutions
 1. [Explain how you would handle multicollinearity in a regression analysis.](#explain-how-you-would-handle-multicollinearity-in-a-regression-analysis)
@@ -67,7 +68,7 @@ questions about the assumptions of linear regression and similar statistical met
 
 ***
 
-### What are the main assumptions of linear regression?
+### What are the main assumptions of linear regression
 The fundamental assumptions of linear regression encompass:
 
 1. **Linearity**: There must be a linear relationship between the independent variables (or features) and the dependent variable. In essence, the relationship between predictors and target is not curved.
@@ -1455,7 +1456,7 @@ Ensuring that machine learning models are unbiased and fair is a critical aspect
 
 Ensuring model fairness is an ongoing process that requires vigilance, collaboration, and continuous improvement. By being proactive in addressing biases and promoting fairness, you contribute to building more ethical and responsible AI systems.
 
-### How do we check if a variable follows the normal distribution?
+### How do we check if a variable follows the normal distribution
 To determine whether a variable adheres to a normal distribution, consider the following approaches:
 
 1. **Histogram Analysis**: Create a histogram from your data. A bell-shaped curve that closely aligns with the histogram suggests the data might be normally distributed.
@@ -1467,3 +1468,11 @@ To determine whether a variable adheres to a normal distribution, consider the f
 4. **Quantile-Quantile (Q-Q) Plot**: Utilize a Q-Q plot, which compares the quantiles of your data against the quantiles of a standard normal distribution. Data that aligns closely with a straight line in this plot is indicative of normal distribution.
 
 Through a combination of these methods, one can gain a comprehensive understanding of the distributional characteristics of their data.
+
+### What is gradient descent? How does it work
+
+Gradient descent is a fundamental optimization algorithm that aims to find the minimum of a function. This method iteratively adjusts its position in the direction opposite to the gradient (or steepest incline) of the function, hence "descending" towards the minimum. The core principle behind gradient descent is grounded in calculus, specifically in the concept of a gradient.
+
+In the context of machine learning and deep learning, gradient descent is predominantly employed to fine-tune model parameters, such as the coefficients in linear regression or the weights in neural networks, to minimize the model's loss or error. The process begins from an initial point and moves step-by-step, with each step's size governed by a parameter known as the learning rate. This rate plays a pivotal role: a smaller value can lead to a slower convergence, possibly requiring numerous iterations, while an excessively large value may cause the algorithm to overshoot the minimum and, in some cases, even diverge.
+
+In essence, gradient descent keeps updating its position using the calculated negative gradient until it either reaches a point where the function value is at its lowest (local or global minimum) or until successive iterations yield minute or no changes, indicating convergence to an optimal solution. The widespread application of gradient descent in various machine learning tasks underscores its importance and utility.
