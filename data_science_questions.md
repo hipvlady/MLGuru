@@ -1,5 +1,10 @@
 # Data Science interview question
 
+## Statistical Foundations and Assumptions
+This category emphasizes the theoretical underpinnings of statistical methods and models, which would be apt for 
+questions about the assumptions of linear regression and similar statistical methods.
+1. [What are the main assumptions of linear regression?](#what-are-the-main-assumptions-of-linear-regression?) 
+
 ## Foundational Concepts and Techniques
 1. [Can you describe what logistic regression is, and where you might apply it?](#can-you-describe-what-logistic-regression-is-and-where-you-might-apply-it)
 2. [What are some key differences between supervised and unsupervised learning?](#what-are-some-key-differences-between-supervised-and-unsupervised-learning)
@@ -15,6 +20,7 @@
 12. [How do you approach time-series analysis?](#how-do-you-approach-time-series-analysis)
 13. [How would you explain the ROC curve to a non-technical stakeholder?](#how-would-you-explain-the-ROC-curve-to-a-non-technical-stakeholder)
 14. [Explain the significance of evaluation metrics like precision, recall, and F1 score](#explain-the-significance-of-evaluation-metrics-like-precision,-recall,-and-F1-score)
+15. [How do we check if a variable follows the normal distribution?](#how-do-we-check-if-a-variable-follows-the-normal-distribution?)
 
 ## Modeling Challenges and Solutions
 1. [Explain how you would handle multicollinearity in a regression analysis.](#explain-how-you-would-handle-multicollinearity-in-a-regression-analysis)
@@ -60,6 +66,19 @@
 4. Describe a challenging data project you've worked on and the solutions you implemented.
 
 ***
+
+### What are the main assumptions of linear regression?
+The fundamental assumptions of linear regression encompass:
+
+1. **Linearity**: There must be a linear relationship between the independent variables (or features) and the dependent variable. In essence, the relationship between predictors and target is not curved.
+2. **Additivity**: The influence of individual predictors on the dependent variable is independent of the values of other predictors. For instance, the increase in revenue due to a sale of one product does not depend on the sales of another product. Any violation of this assumption could introduce interaction effects between predictors.
+3. **Independence of Errors**: The residuals, or errors (the differences between observed and predicted values), should be independent of each other. This means there shouldn't be any correlation between consecutive residuals, especially in time series data.
+4. **Homoscedasticity**: Residuals should exhibit constant variance across all levels of the independent variables. For instance, seasonal patterns in time series data shouldn't lead to higher errors in more active seasons.
+5. **Normality of Residuals**: The distribution of residuals should ideally be normal. While slight deviations might not be problematic, significant departures from normality can affect the reliability of inferences drawn from the model.
+6. **Absence of Multicollinearity**: Predictors in the model should not be too highly correlated with each other, which could make it difficult to discern the individual effect of each predictor on the target variable.
+7. **No Endogeneity**: Independent variables should be free from correlation with the residuals. This ensures that there isn't any hidden variable that might be influencing both the predictors and the outcome simultaneously.
+
+It's worth noting that these assumptions are important for making valid inferences from a linear regression model (like hypothesis tests about coefficients). If they are not met, the estimates of the coefficients can still be unbiased, but the standard errors can be biased leading to unreliable hypothesis tests.
 
 ### Can you describe what logistic regression is, and where you might apply it
 Linear regression and logistic regression are both types of statistical models used in machine learning and statistics, but they are applied to different types of problems and have distinct characteristics.
@@ -1435,3 +1454,16 @@ Ensuring that machine learning models are unbiased and fair is a critical aspect
     Document your efforts to address bias and promote fairness in your models. This documentation helps maintain transparency and accountability.
 
 Ensuring model fairness is an ongoing process that requires vigilance, collaboration, and continuous improvement. By being proactive in addressing biases and promoting fairness, you contribute to building more ethical and responsible AI systems.
+
+### How do we check if a variable follows the normal distribution?
+To determine whether a variable adheres to a normal distribution, consider the following approaches:
+
+1. **Histogram Analysis**: Create a histogram from your data. A bell-shaped curve that closely aligns with the histogram suggests the data might be normally distributed.
+
+2. **Skewness and Kurtosis**: Evaluate the skewness and kurtosis values of the data. Typically, a normal distribution has a skewness close to 0 and a kurtosis around 3. Deviations from these benchmarks can indicate non-normality.
+
+3. **Statistical Tests**: Implement statistical tests like Kolmogorov-Smirnov and Shapiro-Wilk. These tests simultaneously consider skewness and kurtosis and provide a p-value to help determine normality.
+
+4. **Quantile-Quantile (Q-Q) Plot**: Utilize a Q-Q plot, which compares the quantiles of your data against the quantiles of a standard normal distribution. Data that aligns closely with a straight line in this plot is indicative of normal distribution.
+
+Through a combination of these methods, one can gain a comprehensive understanding of the distributional characteristics of their data.
