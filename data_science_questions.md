@@ -23,6 +23,7 @@ questions about the assumptions of linear regression and similar statistical met
 15. [How do we check if a variable follows the normal distribution?](#how-do-we-check-if-a-variable-follows-the-normal-distribution)
 16. [What is gradient descent? How does it work?](#what-is-gradient-descent?-How-does-it-work)
 17. [Which models do you know for solving time series problems?](#which-models-do-you-know-for-solving-time-series-problems)
+18. [In what ways do RNNs and LSTMs differ, particularly in handling dependencies?](#in-what-ways-do-RNNs-and-LSTMs-differ-particularly-in-handling-dependencies?)
 
 ## Modeling Challenges and Solutions
 1. [Explain how you would handle multicollinearity in a regression analysis.](#explain-how-you-would-handle-multicollinearity-in-a-regression-analysis)
@@ -1535,26 +1536,41 @@ The choice of method largely depends on the nature of the time series (e.g., whe
 ### How do you tackle the issue of high cardinality within categorical data fields?
 High cardinality in categorical data fields can pose significant challenges in data analysis and modeling. Here are some strategies to tackle this issue:
 
-*Frequency Encoding*: Replace the categorical values with their corresponding frequency of occurrence in the dataset. This can help algorithms understand the prevalence of each category.
+**Frequency Encoding**: Replace the categorical values with their corresponding frequency of occurrence in the dataset. This can help algorithms understand the prevalence of each category.
 
-*Label Encoding*: Assign a unique integer to each category. This method is straightforward but can introduce ordinality, where the algorithm might incorrectly assume an order in the categories.
+**Label Encoding**: Assign a unique integer to each category. This method is straightforward but can introduce ordinality, where the algorithm might incorrectly assume an order in the categories.
 
-*One-Hot Encoding*: Create new binary columns for each category. While effective, this can lead to a huge increase in dataset size if the cardinality is very high.
+**One-Hot Encoding**: Create new binary columns for each category. While effective, this can lead to a huge increase in dataset size if the cardinality is very high.
 
-*Dimensionality Reduction Techniques*: Methods like PCA (Principal Component Analysis) can be used to reduce the dimensionality of one-hot encoded data.
+**Dimensionality Reduction Techniques**: Methods like PCA (Principal Component Analysis) can be used to reduce the dimensionality of one-hot encoded data.
 
-*Target Encoding*: Replace categorical values with a statistic (like mean) of the target variable. This method can introduce target leakage, so it's important to use it carefully, often in combination with cross-validation.
+**Target Encoding**: Replace categorical values with a statistic (like mean) of the target variable. This method can introduce target leakage, so it's important to use it carefully, often in combination with cross-validation.
 
-*Embedding Layers*: In deep learning, embedding layers can transform high cardinality categorical data into lower-dimensional spaces. This is common in NLP (Natural Language Processing) but can be adapted for other high-cardinality categorical data.
+**Embedding Layers**: In deep learning, embedding layers can transform high cardinality categorical data into lower-dimensional spaces. This is common in NLP (Natural Language Processing) but can be adapted for other high-cardinality categorical data.
 
-*Hashing*: Use hashing to reduce the number of unique categories. This method can introduce collisions where different categories are mapped to the same hash.
+**Hashing**: Use hashing to reduce the number of unique categories. This method can introduce collisions where different categories are mapped to the same hash.
 
-*Grouping Rare Categories*: Group less frequent categories into a single 'Other' category. This can reduce cardinality but might lead to loss of potentially useful information.
+**Grouping Rare Categories**: Group less frequent categories into a single 'Other' category. This can reduce cardinality but might lead to loss of potentially useful information.
 
-*Hierarchical Clustering*: Group similar categories based on certain criteria or domain knowledge. This can help in reducing the number of categories while preserving meaningful information.
+**Hierarchical Clustering**: Group similar categories based on certain criteria or domain knowledge. This can help in reducing the number of categories while preserving meaningful information.
 
-*Binary Encoding*: Similar to one-hot encoding but more efficient, it converts categories into binary code, thus reducing the dimensionality compared to one-hot encoding.
+**Binary Encoding**: Similar to one-hot encoding but more efficient, it converts categories into binary code, thus reducing the dimensionality compared to one-hot encoding.
 
-*Feature Engineering*: Combine categories based on domain knowledge or statistical tests to create new meaningful features.
+**Feature Engineering**: Combine categories based on domain knowledge or statistical tests to create new meaningful features.
 
 Each method has its own advantages and disadvantages, and the choice of method can depend on the specific context of the data and the problem at hand. It's also common to combine multiple techniques for optimal results.
+
+### In what ways do RNNs and LSTMs differ, particularly in handling dependencies?
+To address your question briefly:
+
+1. **RNNs (Recurrent Neural Networks):** 
+   - RNNs are designed to handle sequences of data, making them suitable for tasks like time series analysis or natural language processing. 
+   - They have a simple structure where the output from the previous step is fed as input to the current step.
+   - However, RNNs often struggle with long-term dependencies due to the vanishing gradient problem, where the influence of input data diminishes over time or layers.
+
+2. **LSTMs (Long Short-Term Memory Networks):**
+   - LSTMs are a special kind of RNN designed to overcome the vanishing gradient problem.
+   - They include a more complex architecture with gates (input, forget, and output gates) that regulate the flow of information.
+   - These gates help LSTMs to remember important information over longer sequences and discard irrelevant information, making them more effective in capturing long-term dependencies in data.
+
+In summary, while both RNNs and LSTMs are used for sequence data, LSTMs are specifically adept at handling long-term dependencies, addressing a key limitation of traditional RNNs.
