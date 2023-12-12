@@ -25,6 +25,9 @@ questions about the assumptions of linear regression and similar statistical met
 17. [Which models do you know for solving time series problems?](#which-models-do-you-know-for-solving-time-series-problems)
 18. [In what ways do RNNs and LSTMs differ, particularly in handling dependencies?](#in-what-ways-do-RNNs-and-LSTMs-differ-particularly-in-handling-dependencies?)
 19. [How can you use information theory to compare different language models?](#how-can-you-use-information-theory-to-compare-different-language-models?)
+20. [In terms of ROC curves what do the X and Y axes indicate and how do they fit into the larger interpretation of the data](#in-terms-of-ROC-curves-what-do-the-X-and-Y-axes-indicate-and-how-do-they-fit-into-the-larger-interpretation-of-the-data)
+21. [How does one conceive and construct a minimum height tree in a graph](#how-does-one-conceive-and-construct-a-minimum-height-tree-in-a-graph)
+22. [Can you demonstrate how to reverse a binary tree in a selected programming language](#can-you-demonstrate-how-to-reverse-a-binary-tree-in-a-selected-programming-language)
 
 ## Modeling Challenges and Solutions
 1. [Explain how you would handle multicollinearity in a regression analysis.](#explain-how-you-would-handle-multicollinearity-in-a-regression-analysis)
@@ -1727,3 +1730,121 @@ Choosing between Lasso (Least Absolute Shrinkage and Selection Operator) and Rid
 - On the other hand, if you have a dataset with highly correlated variables, Ridge regression might be more suitable as it can handle multicollinearity well.
 
 Ultimately, the choice between Lasso and Ridge regression should be guided by the characteristics of your data and the specific requirements of your problem. It's also common practice to try both methods and compare their performance through techniques like cross-validation. Additionally, Elastic Net regression, which combines L1 and L2 regularization, can sometimes offer a middle ground that captures the benefits of both methods.
+
+### In terms of ROC curves what do the X and Y axes indicate and how do they fit into the larger interpretation of the data
+
+#### Interpretation of ROC Curves:
+
+In ROC curves:
+
+- **X-Axis (False Positive Rate):** The x-axis represents the False Positive Rate (FPR), which is calculated as \( FPR = \frac{FP}{FP + TN} \), where FP is the number of false positives and TN is the number of true negatives. It indicates the proportion of negative instances that were incorrectly classified as positive. 
+
+- **Y-Axis (True Positive Rate):** The y-axis represents the True Positive Rate (TPR), also known as Sensitivity or Recall, calculated as \( TPR = \frac{TP}{TP + FN} \), where TP is the number of true positives and FN is the number of false negatives. It measures the proportion of actual positives that are correctly identified.
+
+#### Larger Interpretation of the Data:
+
+- **ROC Curve:** The ROC curve is a graphical representation of the trade-off between the true positive rate and the false positive rate at various thresholds. It's used to evaluate the performance of a binary classifier.
+
+- **Area Under the Curve (AUC):** The area under the ROC curve (AUC-ROC) is a measure of the model's ability to distinguish between the two classes. An AUC of 1 represents a perfect classifier, while an AUC of 0.5 represents a no-skill classifier (equivalent to random guessing).
+
+- **Threshold Tuning:** By analyzing the ROC curve, one can select the optimal threshold for classification based on the desired balance between TPR and FPR. This is crucial in applications where the costs of false positives and false negatives are different.
+
+- **Model Comparison:** The ROC curve allows for the comparison of different models. A model with a ROC curve that hugs the upper left corner more closely indicates a better performance.
+
+Understanding and interpreting ROC curves are fundamental in machine learning for assessing classification models, especially when dealing with imbalanced datasets or when the costs of different types of errors vary significantly.
+
+### How does one conceive and construct a minimum height tree in a graph
+
+#### Constructing a Minimum Height Tree:
+
+To construct a minimum height tree (also known as a minimum spanning tree) from a given graph, the goal is to create a tree that connects all the nodes in the graph with the minimum possible total edge height, ensuring there are no cycles. Here’s a basic approach:
+
+#### 1. **Understand the Problem**
+   - A minimum height tree in a graph means a tree where the maximum distance from the root to any leaf is minimized.
+   - It's different from a minimum spanning tree, which minimizes the sum of edge weights, not the height of the tree.
+
+#### 2. **Algorithm to Construct Minimum Height Tree**
+   - The concept of centrality in a graph is crucial here. In a tree, the nodes that are most central (i.e., have the shortest maximum distance to all other nodes) are the best candidates for the root to minimize the height.
+   - For a tree with a unique center, this would be the central node. For a tree with two centers, it could be any one of the two central nodes.
+
+#### 3. **Find All Leaves and Trim Them Iteratively**
+   - Start by identifying all the leaf nodes (nodes with only one connection).
+   - Remove these leaves from the graph, along with their associated edges.
+   - Repeat this process (find new leaves and remove them) iteratively until you are left with one or two nodes. These nodes represent the center of the graph.
+   - The tree formed by the nodes in the last iteration (or two iterations if two central nodes) will be the minimum height tree.
+
+#### 4. **Implementation Considerations**
+   - Use data structures like queues to keep track of leaves.
+   - A graph can be represented using adjacency lists or matrices, and this choice can affect the efficiency of the algorithm.
+
+### Example Application
+
+This approach is particularly useful in network design, like minimizing the maximum latency in a communication network. The minimum height tree ensures that the farthest any node has to communicate is minimized, which is crucial for efficiency in many network applications.
+
+Constructing a minimum height tree is a vital concept in graph theory and has applications in various fields including computer networks, circuit design, and more broadly in the field of computational algorithms.
+
+### Can you demonstrate how to reverse a binary tree in a selected programming language
+
+The question about reversing a binary tree in a selected programming language is best categorized under "Foundational Concepts and Techniques." This category is appropriate as it involves core algorithmic principles and data structures in computer programming, specifically focusing on binary trees and their manipulation.
+
+### Reversing a Binary Tree in Python
+
+Reversing a binary tree, often referred to as "mirroring" or "inverting" a binary tree, involves swapping the left and right children of all nodes in the tree. Here's a demonstration using Python:
+
+#### 1. Definition of a Binary Tree Node
+
+```python
+class TreeNode:
+    def __init__(self, value=0, left=None, right=None):
+        self.value = value
+        self.left = left
+        self.right = right
+```
+
+#### 2. Function to Invert/Reverse the Tree
+
+```python
+def invertTree(root):
+    if root is None:
+        return None
+
+    # Swap the left and right children
+    root.left, root.right = root.right, root.left
+
+    # Recursively call the function on the children
+    invertTree(root.left)
+    invertTree(root.right)
+
+    return root
+```
+
+#### 3. Example Usage
+
+```python
+# Example tree:
+#       1
+#      / \
+#     2   3
+#    /     \
+#   4       5
+
+root = TreeNode(1)
+root.left = TreeNode(2)
+root.right = TreeNode(3)
+root.left.left = TreeNode(4)
+root.right.right = TreeNode(5)
+
+# Invert the tree
+invertTree(root)
+```
+
+After inverting, the tree will look like this:
+```
+    1
+   / \
+  3   2
+ /     \
+5       4
+```
+
+In this function, `invertTree`, we recursively swap the left and right children of each node. This method works for binary trees of any size and shape. The recursion will visit each node in the tree once, resulting in a time complexity of O(n), where n is the number of nodes in the tree.
