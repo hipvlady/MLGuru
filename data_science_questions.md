@@ -28,6 +28,7 @@ questions about the assumptions of linear regression and similar statistical met
 20. [In terms of ROC curves what do the X and Y axes indicate and how do they fit into the larger interpretation of the data](#in-terms-of-ROC-curves-what-do-the-X-and-Y-axes-indicate-and-how-do-they-fit-into-the-larger-interpretation-of-the-data)
 21. [How does one conceive and construct a minimum height tree in a graph](#how-does-one-conceive-and-construct-a-minimum-height-tree-in-a-graph)
 22. [Can you demonstrate how to reverse a binary tree in a selected programming language](#can-you-demonstrate-how-to-reverse-a-binary-tree-in-a-selected-programming-language)
+23. [Whats your strategy for implementing a dynamic programming technique to seek out the longest rising subarray](#whats-your-strategy-for-implementing-a-dynamic-programming-technique-to-seek-out-the-longest-rising-subarray)
 
 ## Modeling Challenges and Solutions
 1. [Explain how you would handle multicollinearity in a regression analysis.](#explain-how-you-would-handle-multicollinearity-in-a-regression-analysis)
@@ -63,6 +64,7 @@ questions about the assumptions of linear regression and similar statistical met
 5. What experience do you have with deep learning frameworks?
 6. Describe your experience with different data storage and management systems.
 7. What is your philosophy on data visualization, and how do you apply it in your work?
+8. [How would you design a model to efficiently detect objects in a given frame](#how-would-you-design-a-model-to-efficiently-detect-objects-in-a-given-frame)
 
 ## Ethics, Security, and Business Strategy
 1. [How do you ensure the ethical use of data in your analyses?](#how-do-you-ensure-the-ethical-use-of-data-in-your-analyses)
@@ -1848,3 +1850,101 @@ After inverting, the tree will look like this:
 ```
 
 In this function, `invertTree`, we recursively swap the left and right children of each node. This method works for binary trees of any size and shape. The recursion will visit each node in the tree once, resulting in a time complexity of O(n), where n is the number of nodes in the tree.
+
+### Whats your strategy for implementing a dynamic programming technique to seek out the longest rising subarray
+
+Implementing a dynamic programming technique to find the longest rising (increasing) subarray in a given array involves breaking down the problem into smaller, overlapping subproblems, solving each subproblem just once, and storing their solutions. The key idea is to use these stored solutions to efficiently solve larger subproblems.
+
+Here’s a strategy to implement this:
+
+#### 1. **Understanding the Problem**
+   - A subarray is a contiguous part of the array.
+   - An increasing subarray means each element is greater than the previous one.
+   - The goal is to find the longest such subarray.
+
+#### 2. **Defining the Subproblems**
+   - Let `length[i]` represent the length of the longest rising subarray ending at index `i`.
+   - The main problem is to find the maximum value of `length[i]` for all `i` in the array.
+
+#### 3. **Formulating the Recurrence Relation**
+   - Initialize `length[i] = 1` for all `i`, as the minimum length of the subarray ending with each element is 1 (the element itself).
+   - For each element `arr[i]`, compare it with each previous element `arr[j]` where `j < i`.
+   - If `arr[i] > arr[j]`, then `length[i] = max(length[i], length[j] + 1)`.
+
+#### 4. **Implementing the Algorithm**
+```python
+def longestRisingSubarray(arr):
+    n = len(arr)
+    if n == 0:
+        return 0
+
+    # Initialize lengths array with 1s
+    length = [1] * n
+
+    # Compute lengths for each subarray
+    for i in range(1, n):
+        for j in range(i):
+            if arr[i] > arr[j]:
+                length[i] = max(length[i], length[j] + 1)
+
+    # The result is the maximum value in the lengths array
+    return max(length)
+```
+
+#### 5. **Optimizing the Implementation**
+   - The above implementation has a time complexity of O(n^2), which is optimal for this problem.
+   - For space optimization, notice that we only need to store the lengths array, which takes O(n) space.
+
+#### 6. **Testing the Implementation**
+   - Test the function with various cases, including edge cases like an empty array, an array with all identical elements, and arrays with both increasing and decreasing sequences.
+
+#### Example Usage
+```python
+arr = [10, 22, 9, 33, 21, 50, 41, 60, 80]
+print(longestRisingSubarray(arr))  # Output: 6 (The subarray is [10, 22, 33, 50, 60, 80])
+```
+
+#### Conclusion
+This dynamic programming approach systematically builds up the solution for the longest rising subarray problem by solving smaller subproblems and using their solutions to construct solutions for larger subproblems. It ensures efficiency and avoids redundant computations.
+
+### How would you design a model to efficiently detect objects in a given frame
+
+#### Designing an Object Detection Model:
+
+##### 1. **Problem Understanding and Requirements Analysis**
+   - Define the scope: What kinds of objects are to be detected? In what kind of environments (indoor, outdoor, varying lighting conditions)?
+   - Determine performance metrics: Accuracy, speed (real-time processing requirements), and resource constraints.
+
+##### 2. **Data Collection and Preprocessing**
+   - Gather a large and diverse dataset of images containing the objects of interest, annotated with bounding boxes.
+   - Preprocess the data: Normalize image sizes, augment the dataset to include variations (rotations, translations, brightness changes, etc.).
+
+##### 3. **Choosing the Right Model**
+   - **Real-Time Detection:** If real-time processing is required, lightweight models like YOLO (You Only Look Once) or SSD (Single Shot Multibox Detector) are suitable.
+   - **High Accuracy:** For tasks where accuracy is more critical than speed, consider using R-CNN (Region-based Convolutional Neural Networks) variants like Faster R-CNN.
+
+##### 4. **Model Training**
+   - Split the data into training, validation, and test sets.
+   - Train the model using a deep learning framework like TensorFlow or PyTorch.
+   - Employ transfer learning by using pre-trained models on datasets like ImageNet, and fine-tune them on your specific dataset.
+
+##### 5. **Performance Optimization**
+   - Tune hyperparameters and use techniques like dropout and batch normalization to improve model performance and prevent overfitting.
+   - Optimize the model for the specific hardware on which it will run (e.g., using TensorFlow Lite for mobile devices).
+
+##### 6. **Evaluation and Testing**
+   - Evaluate the model on the test set using metrics like mAP (mean Average Precision), precision, and recall.
+   - Perform extensive testing in real-world conditions to ensure robustness.
+
+##### 7. **Deployment**
+   - Integrate the model into the application or system where it will be used.
+   - Ensure the deployment environment is compatible with the model (e.g., GPU requirements).
+
+##### 8. **Continuous Improvement and Monitoring**
+   - Continuously monitor the model's performance in production and retrain with new data as necessary.
+   - Stay updated with advancements in object detection technologies and methodologies.
+
+#### Example Use Case
+For instance, in designing a model to detect vehicles in traffic surveillance footage, you might choose YOLO for its real-time processing capabilities. You would train the model on a dataset of annotated traffic footage, optimizing for both speed and accuracy, and then deploy the model as part of a traffic management system.
+
+Designing an efficient object detection model involves not only the selection and training of the model but also a comprehensive understanding of the problem domain, careful data preparation, ongoing performance evaluation, and adaptation to new data and requirements.
